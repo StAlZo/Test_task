@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import pytesseract
 
-image = cv2.imread('page_0.png')
+image = cv2.imread('CV_pdf/page_0.png')
 image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # Применение порогового фильтра для выделения текста

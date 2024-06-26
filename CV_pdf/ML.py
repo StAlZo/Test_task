@@ -1,6 +1,7 @@
 import cv2
 from PIL.ImageTransform import AffineTransform
-
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # def make_background():
 #     image = ' '
