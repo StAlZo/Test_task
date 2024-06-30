@@ -23,21 +23,28 @@ from autocorrect import Speller
 
 
 class ComVis:
-    def __init__(self, path):
-        self.image = cv2.imread(path)
-
-    def bgr_gray(self):
-        gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
-        thresh = cv2.threshold(gray_image, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
-        return thresh
+    def __init__(self):
+        self.image = None
 
     def get_image(self):
         return self.image
 
+    def set_image(self, path):
+        self.image = cv2.imread(path)
+
+    def __bgr_gray(self):
+        gray_image = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
+        thresh = cv2.threshold(gray_image, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+        return thresh
+
 
 class NeuralNetwork:
-    def __init__(self, image):
-        self.text = pytesseract.image_to_string(image, lang="rus", config='--psm 6')
+    def __init__(self):
+        self.__text: str
 
     def get_text(self):
-        return self.text
+        return self.__text
+
+    def set_text(self, image):
+        self.__text = pytesseract.image_to_string(image, lang="rus", config='--psm 6')
+
